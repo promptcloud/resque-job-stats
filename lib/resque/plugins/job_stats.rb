@@ -19,7 +19,7 @@ module Resque
       include Resque::Plugins::JobStats::History
       
       def self.extended(base)
-        Resque.redis.sadd("stats:jobs", base.to_s)
+        Resque.redis.sadd("stats:jobs", base)
       end
 
       def self.add_measured_job(name)
@@ -31,7 +31,7 @@ module Resque
       end
 
       def self.measured_jobs
-        Resque.redis.smembers("stats:jobs").collect { |c| c rescue nil }.compact
+        Resque.redis.smembers("stats:jobs").collect { |c| Object.const_get(c) rescue nil }.compact
       end
     end
   end
