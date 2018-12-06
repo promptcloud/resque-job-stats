@@ -5,7 +5,6 @@ module Resque
       # Extend your job with this module to track how many
       # jobs fail
       module Failed
-        include Resque::Plugins::JobStats::MeasuredHook
 
         # Sets the number of jobs failed
         def jobs_failed=(int)

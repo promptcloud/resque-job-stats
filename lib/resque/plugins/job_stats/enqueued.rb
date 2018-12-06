@@ -5,7 +5,6 @@ module Resque
       # Extend your job with this module to track how many
       # jobs are queued successfully
       module Enqueued
-        include Resque::Plugins::JobStats::MeasuredHook
 
         # Sets the number of jobs queued
         def jobs_enqueued=(int)
